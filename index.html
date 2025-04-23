@@ -2,57 +2,54 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <title>موقعي + ربط محفظة</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 50px;
-      background-color: #f5f5f5;
-    }
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: #2d89ef;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #2566c0;
-    }
-    #walletAddress {
-      margin-top: 20px;
-      font-weight: bold;
-      color: #333;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>منصة المستثمر الرقمي</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <h1>مرحبا بك في موقعي</h1>
-  <p>اضغط أدناه لربط محفظتك</p>
+  <header>
+    <h1>المستثمر الرقمي</h1>
+    <p>منصة تحويل أموال ذكية تعتمد على البلوكشين</p>
+    <nav>
+      <a href="index.html">الرئيسية</a>
+      <a href="about.html">نبذة</a>
+      <a href="contact.html">تواصل</a>
+      <button onclick="connectWallet()">🔗 ربط المحفظة</button>
+    </nav>
+    <div id="walletAddress"></div>
+  </header>
 
-  <button onclick="connectWallet()">🔗 ربط المحفظة</button>
-  <div id="walletAddress"></div>
+  <main>
+    <section class="hero">
+      <h2>اربط محفظتك وابدأ التحويل الذكي</h2>
+      <p>نقدم حلول تحويل منخفضة الرسوم، سريعة، وآمنة.</p>
+      <a href="#" class="btn">ابدأ الآن</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 المستثمر الرقمي - جميع الحقوق محفوظة</p>
+    <div class="social">
+      <a href="#">Telegram</a> |
+      <a href="#">X</a> |
+      <a href="#">YouTube</a>
+    </div>
+  </footer>
 
   <script>
     async function connectWallet() {
       if (window.ethereum) {
         try {
           const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-          const wallet = accounts[0];
-          document.getElementById("walletAddress").innerText = "تم الاتصال بمحفظتك: " + wallet;
+          document.getElementById("walletAddress").innerText = "محفظتك: " + accounts[0];
         } catch (err) {
-          console.error(err);
-          alert("حدث خطأ أثناء الاتصال بالمحفظة");
+          alert("حدث خطأ: " + err.message);
         }
       } else {
-        alert("لم يتم العثور على MetaMask، الرجاء تثبيتها من https://metamask.io");
+        alert("يرجى تثبيت MetaMask");
       }
     }
   </script>
-
 </body>
 </html>
